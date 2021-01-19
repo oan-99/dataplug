@@ -22,9 +22,11 @@ class Department extends CI_Controller {
         $sess_ar = $this->session->userdata('logged_in');
         if ($sess_ar['login_verification_code']!= '') {
            $this->session->set_flashdata('validate',
-           array('message' => 'Limited time access , Your account
-           not verified yet, please check your email and verify otherwise
-           account will delete after 30 days.', 'type' => 'warning'));
+           array('message' =>
+           'Limited time access , Your account not verified yet, ' .
+           'please check your email and verify otherwise ' .
+           'account will delete after 30 days.',
+           'type' => 'warning'));
         }
     }
 
@@ -122,8 +124,8 @@ class Department extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             if (!$this->acl->hasPermission('department', 'edit')) {
                 $this->session->set_flashdata('validate',
-                array('message' => "You don't have enough permissions to do
-                this task.", 'type' => 'warning'));
+                array('message' => "You don't have enough permissions to do" .
+                "this task.", 'type' => 'warning'));
                 redirect(base_url() . 'department');
             }
             $session_data = $this->session->userdata('logged_in');
@@ -181,8 +183,8 @@ class Department extends CI_Controller {
             $department_id = $slug;
             if (!$this->acl->hasPermission('department', 'delete')) {
                 $this->session->set_flashdata('validate',
-                array('message' => "You don't have enough permissions to do
-                this task.", 'type' => 'warning'));
+                array('message' => "You don't have enough permissions to do" .
+                "this task.", 'type' => 'warning'));
                 redirect(base_url() . 'department/index');
             }
             $data = array(
